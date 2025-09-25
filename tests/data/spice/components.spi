@@ -1,0 +1,58 @@
+* Dummy SPICE Netlist with Standard Elements
+
+* ----------------------
+* Sources
+* ----------------------
+V1 in 0 DC 5               ; Voltage source 5V
+I1 0 in DC 1m              ; Current source 1mA
+
+* ----------------------
+* Passive Components
+* ----------------------
+R1 in out 1k               ; Resistor 1k
+C1 out 0 10u               ; Capacitor 10uF
+L1 out mid 1mH             ; Inductor 1mH
+
+* ----------------------
+* Diode
+* ----------------------
+D1 mid 0 D1N4148           ; Diode from mid to ground
+
+* ----------------------
+* BJTs
+* ----------------------
+Q1 out mid 0 NPN_MODEL     ; NPN transistor
+Q2 mid out 0 PNP_MODEL     ; PNP transistor
+
+* ----------------------
+* MOSFETs
+* ----------------------
+M1 drain gate source 0 NMOS_MODEL   ; NMOS transistor
+M2 drain gate source 0 PMOS_MODEL   ; PMOS transistor
+
+* ----------------------
+* Subcircuit
+* ----------------------
+X1 out 0 MYBLOCK
+
+* ----------------------
+* Models
+* ----------------------
+.model D1N4148 D(Is=2.52e-9 Rs=0.568 N=1.752 Cjo=35e-12 M=0.333 Eg=1.11 Bv=100 Ibv=0.1u Tt=11.4n)
+.model NPN_MODEL NPN(Bf=100 Is=1e-15 Vaf=100)
+.model PNP_MODEL PNP(Bf=100 Is=1e-15 Vaf=100)
+.model NMOS_MODEL NMOS(VTO=1.0 KP=50u)
+.model PMOS_MODEL PMOS(VTO=-1.0 KP=50u)
+
+* ----------------------
+* Subcircuit Definition
+* ----------------------
+.subckt MYBLOCK in out
+Rsub in out 10k
+Csub out 0 1u
+.ends MYBLOCK
+
+* ----------------------
+* End of File
+* ----------------------
+.end

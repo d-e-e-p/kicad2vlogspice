@@ -1,0 +1,18 @@
+
+*-------------------------------------------------
+*   Uses two DIVIDER subcircuits inside
+*-------------------------------------------------
+.SUBCKT div VIN1 VOUT1 VIN2 VOUT2
+* Instance with default parameters
+XDIV1 VIN1 VOUT1 DIVIDER
+* Instance with overridden parameters
+XDIV2 VIN2 VOUT2 DIVIDER R1=10k R2=2k
+.ENDS div
+
+*-------------------------------------------------
+* Low-level subckt: Divider
+*-------------------------------------------------
+.SUBCKT DIVIDER IN OUT PARAMS: R1=1k R2=1k
+R1 IN MID {R1}
+R2 MID OUT {R2}
+.ENDS DIVIDER

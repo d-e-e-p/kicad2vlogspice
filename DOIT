@@ -1,0 +1,6 @@
+#!/bin/bash -x
+kicad2vlogspice --input tests/data/verilog/instance_array.v --outdir tests/out1
+kicad2vlogspice --input tests/data/spice/components.spi --outdir tests/out1
+kicad2vlogspice --input tests/data/kicad_net/A64-OlinuXino_Rev_H.net --outdir tests/out1
+kicad2vlogspice --input tests/out1/A64-OlinuXino_Rev_H.sp --outdir tests/out2s
+kicad2vlogspice --input tests/out1/A64-OlinuXino_Rev_H.v --outdir tests/out2v
